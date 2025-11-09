@@ -67,25 +67,9 @@ public class SQLiteDialect extends Dialect {
         return limitHandler;
     }
 
-    @Override
-    public boolean supportsIdentityColumns() {
-        return true;
-    }
 
-    @Override
-    public boolean hasDataTypeInIdentityColumn() {
-        return false;
-    }
 
-    @Override
-    public String getIdentitySelectString() {
-        return "select last_insert_rowid()";
-    }
 
-    @Override
-    public String getIdentityColumnString() {
-        return "integer primary key autoincrement";
-    }
 
     @Override
     public boolean supportsLimit() {
@@ -98,20 +82,7 @@ public class SQLiteDialect extends Dialect {
                 .append(hasOffset ? " limit ? offset ?" : " limit ?").toString();
     }
 
-    @Override
-    public boolean supportsTemporaryTables() {
-        return true;
-    }
 
-    @Override
-    public String getCreateTemporaryTableString() {
-        return "create temporary table if not exists";
-    }
-
-    @Override
-    public boolean dropTemporaryTableAfterUse() {
-        return false;
-    }
 
     @Override
     public boolean supportsCurrentTimestampSelection() {

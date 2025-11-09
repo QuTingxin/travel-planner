@@ -39,7 +39,7 @@ public class TravelPlanController {
         User user = userService.findByUsername(auth.getName())
                 .orElseThrow(() -> new RuntimeException("用户不存在"));
 
-        TravelPlan createdPlan = travelPlanService.createTravelPlan(travelPlan, user);
+        TravelPlan createdPlan = travelPlanService.createTravelPlan(travelPlan, user); // qu
         return ResponseEntity.ok(createdPlan);
     }
 
