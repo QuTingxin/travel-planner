@@ -287,20 +287,8 @@ docker run -p 80:80 travel-planner-frontend
 
 ## ⚙️ 配置说明
 
-### 环境变量配置
-
-创建 `.env` 文件:
-```properties
-# 后端配置
-SERVER_PORT=8080
-JWT_SECRET=your_jwt_secret_key
-
-# 阿里云 AI 配置（可选）
-ALIYUN_AI_API_KEY=your_aliyun_api_key
-
-# 前端配置
-VITE_API_BASE_URL=http://localhost:8080/api
-```
+### Ai
+在application.yml中填写阿里云key
 
 ### 数据库配置
 
