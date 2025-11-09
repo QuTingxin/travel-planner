@@ -1,0 +1,173 @@
+# 后端 Java 相关
+## 编译输出
+backend/target/
+backend/*.jar
+backend/*.war
+backend/*.ear
+
+## Eclipse
+backend/.classpath
+backend/.project
+backend/.settings/
+
+## IntelliJ IDEA
+backend/.idea/
+backend/*.iws
+backend/*.iml
+backend/*.ipr
+
+## NetBeans
+backend/nbproject/private/
+backend/build/
+backend/nbbuild/
+backend/dist/
+backend/nbdist/
+backend/.nb-gradle/
+
+## VS Code
+backend/.vscode/
+
+# 前端 Node.js 相关
+## 依赖目录
+frontend/node_modules/
+frontend/.pnpm-store/
+
+## 构建输出
+frontend/dist/
+frontend/build/
+
+## 缓存目录
+frontend/.npm/
+frontend/.yarn/
+frontend/.yarn/cache
+frontend/.yarn/unplugged
+frontend/.yarn/build-state.yml
+frontend/.yarn/install-state.gz
+frontend/.pnp.*
+
+## 日志文件
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/lerna-debug.log*
+
+## 环境变量
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+## IDE 相关
+frontend/.vscode/
+frontend/.idea/
+
+# 数据库文件
+*.db
+*.sqlite
+*.db-journal
+data/
+
+# 系统文件
+## macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+## Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+## Linux
+*~
+
+# 日志文件
+*.log
+logs/
+
+# 临时文件
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# 备份文件
+*.bak
+*.backup
+*.old
+
+# 包文件
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# 文档
+*.doc
+*.docx
+*.pdf
+*.ppt
+*.pptx
+*.xls
+*.xlsx
+
+# Docker 相关
+docker-compose.override.yml
+
+# Maven 包装器
+!.mvn/wrapper/maven-wrapper.jar
+
+# 应用特定文件
+## 开发环境配置文件
+backend/src/main/resources/application-dev.yml
+backend/src/main/resources/application-local.yml
+
+## 生产环境配置文件（包含敏感信息）
+backend/src/main/resources/application-prod.yml
+
+## 密钥文件
+*.key
+*.pem
+*.crt
+
+# 测试相关
+## 单元测试报告
+backend/target/surefire-reports/
+backend/target/failsafe-reports/
+
+## 代码覆盖率报告
+backend/target/jacoco/
+
+## 检查样式报告
+backend/target/checkstyle-reports/
+
+# 前端测试相关
+frontend/coverage/
+frontend/.nyc_output/
+
+# 性能分析
+frontend/.vite/
+
+# 类型脚本
+frontend/*.tsbuildinfo
+
+# 包锁文件（根据团队规范选择是否忽略）
+# frontend/package-lock.json
+# frontend/yarn.lock
+# frontend/pnpm-lock.yaml
+
+# 故事书
+frontend/storybook-static/
+
+# 文档
+docs/_build/
+
+# 本地开发环境
+.devcontainer/
