@@ -12,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -123,12 +124,18 @@ public class ExpenseController {
         double budgetRemaining = plan.getBudget() - totalExpenses;
         double budgetUsage = (totalExpenses / plan.getBudget()) * 100;
 
-        Map<String, Object> summary = Map.of(
-                "totalExpenses", totalExpenses,
-                "budgetRemaining", budgetRemaining,
-                "budgetUsage", budgetUsage,
-                "expenseCount", expenses.size()
-        );
+        Map<String, Object> summary = new HashMap<String, Object>(){{
+            put("totalExpenses", totalExpenses);
+            put("budgetRemaining", budgetRemaining);
+            put("budgetUsage", budgetUsage);
+            put("expenseCount", expenses.size());
+        }};
+//        Map.of(
+//                "totalExpenses", totalExpenses,
+//                "budgetRemaining", budgetRemaining,
+//                "budgetUsage", budgetUsage,
+//                "expenseCount", expenses.size()
+//        );
 
         return ResponseEntity.ok(summary);
     }
