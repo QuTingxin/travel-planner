@@ -1,14 +1,12 @@
 server:
   port: 8080
   servlet:
-    context-path: /api
+    context-path: /
 
 spring:
   datasource:
     url: jdbc:sqlite:travel_planner.db
     driver-class-name: org.sqlite.JDBC
-    username:
-    password:
   jpa:
     database-platform: org.sqlite.hibernate.dialect.SQLiteDialect
     hibernate:
@@ -19,14 +17,18 @@ spring:
         format_sql: true
         dialect: org.sqlite.hibernate.dialect.SQLiteDialect
 
+app:
+  jwt:
+    secret: travel-planner-jwt-secret-key-2024
+    expiration: 86400000 # 24 hours
+
 # 阿里云大模型配置
 aliyun:
   ai:
-    api-key: ${ALIYUN_AI_API_KEY:0}
+    api-key: ${ALIYUN_AI_API_KEY:*}
     endpoint: https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation
 
 logging:
   level:
-    com.travelplanner: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE

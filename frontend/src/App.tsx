@@ -17,14 +17,15 @@ const App: React.FC = () => {
       <Router>
         <div className="App">
           <Routes>
-            <Route 
-              path="/login" 
-              element={!isAuthenticated ? <Login /> : <Navigate to="/" />} 
-            />
+            
             <Route 
               path="/" 
               element={isAuthenticated ? <Layout /> : <Navigate to="/login" />}
             >
+              <Route 
+              path="/login" 
+              element={!isAuthenticated ? <Login /> : <Navigate to="/" />} 
+            />
               <Route path="/voice-planner" element={<VoicePlanner />} />
               <Route index element={<TravelPlanner />} />
             </Route>

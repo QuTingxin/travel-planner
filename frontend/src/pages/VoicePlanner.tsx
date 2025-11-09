@@ -17,7 +17,7 @@ import {
     ReloadOutlined 
 } from '@ant-design/icons';
 import { useSpeechRecognition } from '../utils/speechRecognition';
-import { travelPlanAPI } from '../services/api';
+import { travelPlanAPI, voicePlanAPI } from '../services/api';
 import { TravelPlan } from '../types';
 
 const { Title, Paragraph } = Typography;
@@ -45,41 +45,66 @@ const VoicePlanner: React.FC = () => {
         }
     };
 
-    const handleGeneratePlan = async () => {
-        if (!transcript.trim()) {
-            message.warning('请先进行语音输入');
-            return;
-        }
+    // const handleGeneratePlan = async () => {
+    //     if (!transcript.trim()) {
+    //         message.warning('请先进行语音输入');
+    //         return;
+    //     }
 
-        setIsGenerating(true);
-        try {
-            const response = await fetch('http://localhost:8080/api/voice-plan/generate', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                },
-                body: JSON.stringify({
-                    voiceText: transcript
-                })
-            });
+    //     setIsGenerating(true);
+    //     try {
+    //         const response = await fetch('http://localhost:8080/api/voice-plan/generate', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'Authorization': `Bearer ${localStorage.getItem('token')}`
+    //             },
+    //             body: JSON.stringify({
+    //                 voiceText: transcript
+    //             })
+    //         });
 
-            if (!response.ok) {
-                throw new Error('生成计划失败');
-            }
+    //         if (!response.ok) {
+    //             throw new Error('生成计划失败');
+    //         }
 
-            const data = await response.json();
-            setGeneratedPlan(data.plan);
-            setAiAnalysis(data.aiAnalysis);
-            message.success('旅行计划生成成功！');
+    //         const data = await response.json();
+    //         setGeneratedPlan(data.plan);
+    //         setAiAnalysis(data.aiAnalysis);
+    //         message.success('旅行计划生成成功！');
 
-        } catch (error) {
-            console.error('生成计划失败:', error);
-            message.error('生成旅行计划失败，请重试');
-        } finally {
-            setIsGenerating(false);
-        }
-    };
+    //     } catch (error) {
+    //         console.error('生成计划失败:', error);
+    //         message.error('生成旅行计划失败，请重试');
+    //     } finally {
+    //         setIsGenerating(false);
+    //     }
+    // };
+
+
+    // 在 handleGeneratePlan 方法中，替换 fetch 调用为：
+const handleGeneratePlan = async () => {
+    if (!transcript.trim()) {
+        message.warning('请先进行语音输入');
+        return;
+    }
+
+    setIsGenerating(true);
+    try {
+        // 使用统一的 API 服务而不是直接 fetch
+        const response = await voicePlanAPI.generate(transcript);
+        
+        setGeneratedPlan(response.plan);
+        setAiAnalysis(response.aiAnalysis);
+        message.success('旅行计划生成成功！');
+
+    } catch (error) {
+        console.error('生成计划失败:', error);
+        message.error('生成旅行计划失败，请重试');
+    } finally {
+        setIsGenerating(false);
+    }
+};
 
     const handleCreateNew = () => {
         setGeneratedPlan(null);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Menu, Button, Dropdown, Avatar, Space } from 'antd';
+import { Layout, Menu, Button, Dropdown, Avatar, Space, message } from 'antd';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { 
     LogoutOutlined, 
@@ -20,7 +20,8 @@ const AppLayout: React.FC = () => {
     const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('username');
-        navigate('/login');
+        navigate('/login', { replace: true });
+        message.success('已退出登录');
     };
 
     const userMenuItems = [

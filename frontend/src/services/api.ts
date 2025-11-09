@@ -1,45 +1,62 @@
 import axios from 'axios';
 import { TravelPlan, Expense, AuthResponse, LoginRequest, RegisterRequest } from '../types';
+import { message } from 'antd';
 
 const API_BASE_URL = 'http://localhost:8080/api';
 
+// 创建 axios 实例
 const api = axios.create({
   baseURL: API_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  withCredentials: true,
 });
 
-// 请求拦截器 - 添加JWT token
+// 请求拦截器
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
-    }
+    } 
     return config;
   },
   (error) => {
+    console.error('请求配置错误:', error);
     return Promise.reject(error);
   }
 );
 
-// 响应拦截器 - 处理token过期
+// 响应拦截器
 api.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    console.log('收到响应:', response.status, response.config.url);
+    return response;
+  },
   (error) => {
+
+    
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
       localStorage.removeItem('username');
       window.location.href = '/login';
     }
+    
     return Promise.reject(error);
   }
 );
 
+// API 接口
 export const authAPI = {
   login: (data: LoginRequest): Promise<AuthResponse> =>
     api.post('/auth/login', data).then(res => res.data),
   
-  register: (data: RegisterRequest): Promise<string> =>
-    api.post('/auth/register', data).then(res => res.data),
+  register: (data: RegisterRequest): Promise<string> => {
+    message.info('注册中，请稍候...' + data.username);
+    return api.post('/auth/register', data).then(res => res.data)
+  }
+    
 };
 
 export const travelPlanAPI = {
