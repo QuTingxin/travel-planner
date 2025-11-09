@@ -12,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -43,10 +44,14 @@ public class VoicePlanController {
             TravelPlan savedPlan = travelPlanService.createTravelPlan(travelPlan, user);
 
             // 返回结果
-            Map<String, Object> response =  Map.of(
-                    "plan", savedPlan,
-                    "aiAnalysis", aiResult
-            );
+            Map<String, Object> response =  new HashMap<String, Object>(){{
+                put("plan", savedPlan);
+                put("aiAnalysis", aiResult);
+            }};
+//                    Map.of(
+//                    "plan", savedPlan,
+//                    "aiAnalysis", aiResult
+//            );
 
             return ResponseEntity.ok(response);
 
