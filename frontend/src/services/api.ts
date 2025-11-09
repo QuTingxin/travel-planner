@@ -59,6 +59,11 @@ export const travelPlanAPI = {
     api.get(`/travel-plans/search?destination=${destination}`).then(res => res.data),
 };
 
+export const voicePlanAPI = {
+    generate: (voiceText: string): Promise<any> =>
+        api.post('/voice-plan/generate', { voiceText }).then(res => res.data),
+};
+
 export const expenseAPI = {
   getByPlan: (planId: number): Promise<Expense[]> =>
     api.get(`/expenses/plan/${planId}`).then(res => res.data),

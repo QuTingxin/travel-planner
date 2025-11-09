@@ -6,7 +6,8 @@ import {
     UserOutlined, 
     MenuFoldOutlined, 
     MenuUnfoldOutlined,
-    CompassOutlined 
+    CompassOutlined, 
+    AudioOutlined
 } from '@ant-design/icons';
 
 const { Header, Sider, Content } = Layout;
@@ -40,12 +41,17 @@ const AppLayout: React.FC = () => {
     ];
 
     const menuItems = [
-        {
-            key: '/',
-            icon: <CompassOutlined />,
-            label: '旅行规划',
-        },
-    ];
+    {
+        key: '/',
+        icon: <CompassOutlined />,
+        label: '旅行规划',
+    },
+    {
+        key: '/voice-planner',
+        icon: <AudioOutlined />,
+        label: '语音规划',
+    },
+];
 
     return (
         <Layout style={{ minHeight: '100vh' }}>

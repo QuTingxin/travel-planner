@@ -11,6 +11,7 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:8080',
         changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '/api')
       },
     },
   },
@@ -26,7 +27,8 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          ui: ['antd'],
+          ui: ['antd', '@ant-design/icons'],
+          router: ['react-router-dom'],
         },
       },
     },

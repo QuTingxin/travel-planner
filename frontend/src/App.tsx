@@ -5,6 +5,8 @@ import zhCN from 'antd/locale/zh_CN';
 import Layout from './components/Layout';
 import Login from './pages/Login';
 import TravelPlanner from './pages/TravelPlanner';
+import VoicePlanner from './pages/VoicePlanner';
+
 import './App.css';
 
 const App: React.FC = () => {
@@ -23,6 +25,7 @@ const App: React.FC = () => {
               path="/" 
               element={isAuthenticated ? <Layout /> : <Navigate to="/login" />}
             >
+              <Route path="/voice-planner" element={<VoicePlanner />} />
               <Route index element={<TravelPlanner />} />
             </Route>
           </Routes>

@@ -15,6 +15,10 @@ spring:
     properties:
       hibernate:
         format_sql: true
+aliyun:
+  ai:
+    api-key: ${ALIYUN_AI_API_KEY:sk-cc0831e2c3d045ccb72a4c75ad234333}
+    endpoint: https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation
 
 logging:
   level:
